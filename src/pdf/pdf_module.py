@@ -1,10 +1,14 @@
 from fpdf import FPDF
+from model.resume import ResumeData
 
 class PDF(FPDF):
+
+    def __init__(self, resume_data: ResumeData):
+        self.resume_data = resume_data
+
     def header(self):
         # Rendering logo:
-        # self.image("image/sample.jpg", 10, 8, 33)
-        self.image("https://farm9.staticflickr.com/8295/8007075227_dc958c1fe6_z_d.jpg", 10, 8, 33)
+        self.image(self.resume_data.personal_info.image_path)
         # Setting font: helvetica bold 15
         self.set_font("helvetica", style="B", size=15)
         # Moving cursor to the right:
